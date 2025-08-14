@@ -1,4 +1,7 @@
-#pageMarker_donateContainer {
+/* Web Marker Extension - Main Styles */
+/* Styles for the drawing interface overlay */
+
+#webMarker_donateContainer {
   margin-top: 18px;
   display: block!important;
   white-space: nowrap;
@@ -7,7 +10,7 @@
   margin-right: auto;
 }
 
-a.pageMarker_kofi-button {
+a.webMarker_kofi-button {
   box-shadow: 1px 1px 0px rgb(0 0 0 / 20%);
   line-height: 21.6px!important;
   display: block!important;
@@ -27,14 +30,14 @@ a.pageMarker_kofi-button {
   font-size: 14px !important;
 }
 
-.pageMarker_donationText {
+.webMarker_donationText {
   margin: 0px;
   font-size:14px;
   text-align: center;
   font-weight: bold;
 }
 
-span.pageMarker_kofitext {
+span.webMarker_kofitext {
   color: #fff !important;
   letter-spacing: -0.15px!important;
   text-wrap: none;
@@ -46,7 +49,7 @@ span.pageMarker_kofitext {
   text-shadow: 0 1px 1px rgb(34 34 34 / 5%);
 }
 
-.pageMarker_kofitext img.pageMarker_kofiimg {
+.webMarker_kofitext img.webMarker_kofiimg {
   height: 9px!important;
   width: 13.2px!important;
   display: initial;
@@ -55,7 +58,7 @@ span.pageMarker_kofitext {
 
 @keyframes kofi-wiggle{0%{transform:rotate(0) scale(1)}60%{transform:rotate(0) scale(1)}75%{transform:rotate(0) scale(1.12)}80%{transform:rotate(0) scale(1.1)}84%{transform:rotate(-10deg) scale(1.1)}88%{transform:rotate(10deg) scale(1.1)}92%{transform:rotate(-10deg) scale(1.1)}96%{transform:rotate(10deg) scale(1.1)}100%{transform:rotate(0) scale(1)}}
 
-img.pageMarker_kofiimg {
+img.webMarker_kofiimg {
   display: initial!important;
   vertical-align: middle;
   height: 9px!important;
@@ -69,7 +72,7 @@ img.pageMarker_kofiimg {
   margin-bottom: 1px!important;
 }
 
-#pageMarker_draggable {
+#webMarker_draggable {
   box-sizing: content-box!important;
   line-height:0.7!important;
   cursor: move!important;
@@ -96,7 +99,7 @@ img.pageMarker_kofiimg {
   transition: all 0.3s ease!important;
 }
 
-.pageMarker_close {
+.webMarker_close {
   position: absolute!important;
   top: 5px!important;
   right: 5px!important;
@@ -115,12 +118,12 @@ img.pageMarker_kofiimg {
   float: none!important;
 }
 
-.pageMarker_close:hover {
+.webMarker_close:hover {
   opacity: 0.6!important;
   -webkit-text-stroke-width: inherit!important;
 }
 
-p.pageMarker_bold {
+p.webMarker_bold {
   font-weight: 700!important;
   margin: 0px!important;
   line-height:1.2!important;
@@ -130,7 +133,7 @@ p.pageMarker_bold {
   -webkit-font-smoothing: antialiased!important;
 }
 
-p.pageMarker {
+p.webMarker {
   margin: 0px!important;
   display: inline!important;
   line-height:1.2!important;
@@ -139,19 +142,19 @@ p.pageMarker {
   -webkit-font-smoothing: antialiased!important;
 }
 
-q.pageMarker_quote {
-  quotes: "“" "”" "‘" "’";
+q.webMarker_quote {
+  quotes: """ """ "'" "'";
 }
 
-q.pageMarker_quote::before {
+q.webMarker_quote::before {
   content: open-quote;
 }
 
-q.pageMarker_quote::after {
+q.webMarker_quote::after {
   content: close-quote;
 }
 
-#pageMarker_tip {
+#webMarker_tip {
   box-sizing: content-box!important;
   line-height:1.2!important;
   width: 78px!important;
@@ -177,10 +180,11 @@ q.pageMarker_quote::after {
   font-family: Arial!important;
 }
 
-#pageMarker_thicknessSlider {
+#webMarker_thicknessSlider {
   line-height:0.7!important;
   outline: none;
   -webkit-appearance: slider-horizontal;
+  appearance: slider-horizontal;
   border: 0px;
   margin: 5px auto 5px auto!important;
   width: 95%!important;
@@ -194,18 +198,18 @@ q.pageMarker_quote::after {
   transition: none!important;
 }
 
-#pageMarker_thicknessSlider:hover {
+#webMarker_thicknessSlider:hover {
   box-shadow: none!important;
 }
 
-#pageMarker_tools {
+#webMarker_tools {
   line-height:0.7!important;
   display: block!important;
   margin-bottom: 5px;
   box-sizing: content-box!important;
 }
 
-#pageMarker_colorSelect {
+#webMarker_colorSelect {
   height: 35px!important;
   line-height:1.0!important;
   border-radius: 2px!important;
@@ -222,19 +226,19 @@ q.pageMarker_quote::after {
   margin: 0;
 }
 
-#pageMarker_colorSelect:focus {
+#webMarker_colorSelect:focus {
   outline: none!important;
 }
 
-#pageMarker_color {
+#webMarker_color {
   line-height:0.7!important;
 }
 
-#pageMarker_size {
+#webMarker_size {
   line-height:0.7!important;
 }
 
-#pageMarker_canvas {
+#webMarker_canvas {
   cursor: crosshair;
   top: 0px;
   left: 0px;
@@ -244,11 +248,11 @@ q.pageMarker_quote::after {
   user-select: none!important;
 }
 
-#pageMarker_draftCanvas {
+#webMarker_draftCanvas {
   z-index: 2147483645;
 }
 
-.pageMarker_title {
+.webMarker_title {
   line-height:0.7!important;
   color: #808080;
   font-size: 11px;
@@ -261,11 +265,11 @@ q.pageMarker_quote::after {
   -webkit-font-smoothing: antialiased!important;
 }
 
-.pageMarker_toolsTitle {
+.webMarker_toolsTitle {
   margin: 6px 0 6px 0;
 }
 
-.pageMarker_button {
+.webMarker_button {
   font-style: normal!important;
   display: block!important;
   box-shadow: none!important;
@@ -294,18 +298,18 @@ q.pageMarker_quote::after {
   -webkit-font-smoothing: antialiased!important;
 }
 
-.pageMarker_button:hover {
+.webMarker_button:hover {
   background: rgba(0, 0, 0, 0.05)!important;
 }
 
-.pageMarker_icon {
+.webMarker_icon {
   padding: 0px!important;
   width: 21px!important;
   height: 20px!important;
   background-color: transparent!important;
 }
 
-.pageMarker_tool {
+.webMarker_tool {
   display: inline-block;
   box-sizing: border-box!important;
   margin: 2px 3px 3px 3px;
@@ -322,20 +326,20 @@ q.pageMarker_quote::after {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1)!important;
 }
 
-.pageMarker_toolDiv {
+.webMarker_toolDiv {
   text-align: center;
   display: block!important;
 }
 
 @media (hover: hover) {
-  .pageMarker_tool:hover {
+  .webMarker_tool:hover {
     background: rgba(102, 126, 234, 0.15)!important;
     transform: translateY(-1px)!important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15)!important;
   }
 }
 
-.pageMarker_tool:active {
+.webMarker_tool:active {
   background: rgba(102, 126, 234, 0.25)!important;
   transform: translateY(0)!important;
 }
