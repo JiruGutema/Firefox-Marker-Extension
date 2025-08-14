@@ -1,0 +1,50 @@
+{
+  "name": "Firefox Marker - Draw on Web",
+  "description": "Draw on a webpage for firefox",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "<all_urls>"
+  ],
+  "icons": {
+    "128": "icon.png"
+  },
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_title": "Firefox Marker"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "firefoxmarker",
+      "strict_min_version": "88.0"
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "web_accessible_resources": [
+    "marker.png",
+    "eraser.png",
+    "save.png",
+    "pointer.png",
+    "highlighter.png",
+    "clear.png",
+    "undo.png",
+    "redo.png",
+    "cup-border.png",
+    "exit.png",
+    "line.png",
+    "text.png",
+    "move.png",
+    "main.css"
+  ],
+  "manifest_version": 2
+}

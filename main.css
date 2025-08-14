@@ -1,0 +1,341 @@
+#pageMarker_donateContainer {
+  margin-top: 18px;
+  display: block!important;
+  white-space: nowrap;
+  width:100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a.pageMarker_kofi-button {
+  box-shadow: 1px 1px 0px rgb(0 0 0 / 20%);
+  line-height: 21.6px!important;
+  display: block!important;
+  background-color: #ff0000;
+  padding: 2px 6.2px 2px 5.5px!important;
+  text-align: center !important;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  overflow-wrap: break-word;
+  vertical-align: middle;
+  border: 0 none #fff !important;
+  font-family: 'Quicksand',Helvetica,Century Gothic,sans-serif !important;
+  text-decoration: none;
+  text-shadow: none;
+  font-weight: 700!important;
+  font-size: 14px !important;
+}
+
+.pageMarker_donationText {
+  margin: 0px;
+  font-size:14px;
+  text-align: center;
+  font-weight: bold;
+}
+
+span.pageMarker_kofitext {
+  color: #fff !important;
+  letter-spacing: -0.15px!important;
+  text-wrap: none;
+  vertical-align: middle;
+  line-height: 20px !important;
+  padding: 0;
+  text-align: center;
+  text-decoration: none!important;
+  text-shadow: 0 1px 1px rgb(34 34 34 / 5%);
+}
+
+.pageMarker_kofitext img.pageMarker_kofiimg {
+  height: 9px!important;
+  width: 13.2px!important;
+  display: initial;
+  animation: kofi-wiggle 3s infinite;
+}
+
+@keyframes kofi-wiggle{0%{transform:rotate(0) scale(1)}60%{transform:rotate(0) scale(1)}75%{transform:rotate(0) scale(1.12)}80%{transform:rotate(0) scale(1.1)}84%{transform:rotate(-10deg) scale(1.1)}88%{transform:rotate(10deg) scale(1.1)}92%{transform:rotate(-10deg) scale(1.1)}96%{transform:rotate(10deg) scale(1.1)}100%{transform:rotate(0) scale(1)}}
+
+img.pageMarker_kofiimg {
+  display: initial!important;
+  vertical-align: middle;
+  height: 9px!important;
+  width: 13.2px!important;
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+  border: none;
+  margin-top: 0;
+  margin-right: 3.5px!important;
+  margin-left: 0!important;
+  margin-bottom: 1px!important;
+}
+
+#pageMarker_draggable {
+  box-sizing: content-box!important;
+  line-height:0.7!important;
+  cursor: move!important;
+  height: 302px!important;
+  width: 85px!important;
+  border-color: transparent!important;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)!important;
+  backdrop-filter: blur(15px)!important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255,255,255,0.2)!important;
+  border-style: none!important;
+  border-width: 0px!important;
+  border-radius: 16px!important;
+  margin: 20px!important;
+  padding: 8px!important;
+  position: absolute!important;
+  right: 0px!important;
+  z-index: 2147483647!important;
+  user-select: none!important;
+  -webkit-user-select: none!important;
+  display: block;
+  text-align: left!important;
+  letter-spacing: normal!important;
+  -webkit-font-smoothing: antialiased!important;
+  transition: all 0.3s ease!important;
+}
+
+.pageMarker_close {
+  position: absolute!important;
+  top: 5px!important;
+  right: 5px!important;
+  border: 0!important;
+  user-select: none!important;
+  -webkit-user-select: none!important;
+  background-color: transparent!important;
+  outline: 0px!important;
+  cursor: pointer!important;
+  text-decoration: none!important;
+  color: black!important;
+  font-size: 12px!important;
+  font-weight: 800!important;
+  opacity: 0.3!important;
+  text-shadow: none!important;
+  float: none!important;
+}
+
+.pageMarker_close:hover {
+  opacity: 0.6!important;
+  -webkit-text-stroke-width: inherit!important;
+}
+
+p.pageMarker_bold {
+  font-weight: 700!important;
+  margin: 0px!important;
+  line-height:1.2!important;
+  display: inline!important;
+  font-size: 14px!important;
+  font-family: Arial!important;
+  -webkit-font-smoothing: antialiased!important;
+}
+
+p.pageMarker {
+  margin: 0px!important;
+  display: inline!important;
+  line-height:1.2!important;
+  font-size: 14px!important;
+  font-family: Arial!important;
+  -webkit-font-smoothing: antialiased!important;
+}
+
+q.pageMarker_quote {
+  quotes: "“" "”" "‘" "’";
+}
+
+q.pageMarker_quote::before {
+  content: open-quote;
+}
+
+q.pageMarker_quote::after {
+  content: close-quote;
+}
+
+#pageMarker_tip {
+  box-sizing: content-box!important;
+  line-height:1.2!important;
+  width: 78px!important;
+  color: #000000!important;
+  border-color: #ffffff!important;
+  background-color: #ffffff!important;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 4px 12px;
+  border-style: solid!important;
+  border-width: 5px!important;
+  border-radius: 10px!important;
+  margin: 20px!important;
+  padding: 4px 6px 4px 4px!important;
+  position: absolute!important;
+  right: 0px!important;
+  z-index: 2147483647!important;
+  user-select: none!important;
+  -webkit-user-select: none!important;
+  display: block;
+  text-align: left!important;
+  letter-spacing: normal!important;
+  -webkit-font-smoothing: antialiased!important;
+  font-size: 14px!important;
+  font-family: Arial!important;
+}
+
+#pageMarker_thicknessSlider {
+  line-height:0.7!important;
+  outline: none;
+  -webkit-appearance: slider-horizontal;
+  border: 0px;
+  margin: 5px auto 5px auto!important;
+  width: 95%!important;
+  display: block!important;
+  padding: 3px;
+  border-radius: 5px;
+  height: auto!important;
+  background: #d7dcdf;
+  box-shadow: none!important;
+  box-sizing: content-box!important;
+  transition: none!important;
+}
+
+#pageMarker_thicknessSlider:hover {
+  box-shadow: none!important;
+}
+
+#pageMarker_tools {
+  line-height:0.7!important;
+  display: block!important;
+  margin-bottom: 5px;
+  box-sizing: content-box!important;
+}
+
+#pageMarker_colorSelect {
+  height: 35px!important;
+  line-height:1.0!important;
+  border-radius: 2px!important;
+  width: 100%!important;
+  border: 1px !important;
+  background-color: #ffffff;
+  box-shadow: none!important;
+  padding: 0px;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 0;
+}
+
+#pageMarker_colorSelect:focus {
+  outline: none!important;
+}
+
+#pageMarker_color {
+  line-height:0.7!important;
+}
+
+#pageMarker_size {
+  line-height:0.7!important;
+}
+
+#pageMarker_canvas {
+  cursor: crosshair;
+  top: 0px;
+  left: 0px;
+  position: absolute!important;
+  z-index: 2147483646;
+  background-color: transparent;
+  user-select: none!important;
+}
+
+#pageMarker_draftCanvas {
+  z-index: 2147483645;
+}
+
+.pageMarker_title {
+  line-height:0.7!important;
+  color: #808080;
+  font-size: 11px;
+  font-family: Arial!important;
+  margin: 1px 0px 2px 0px;
+  text-transform: uppercase;
+  font-weight: 800;
+  user-select: none;
+  clear: none;
+  -webkit-font-smoothing: antialiased!important;
+}
+
+.pageMarker_toolsTitle {
+  margin: 6px 0 6px 0;
+}
+
+.pageMarker_button {
+  font-style: normal!important;
+  display: block!important;
+  box-shadow: none!important;
+  font-family: 'Arial'!important;
+  font-weight: 800!important;
+  font-size: 12px!important;
+  text-transform: uppercase!important;
+  background: white!important;
+  color: grey!important;
+  border: 1px solid grey!important;
+  border-radius: 10px!important;
+  width: 100%!important;
+  padding: 0px!important;
+  cursor: pointer!important;
+  height: 25px!important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none!important;
+  outline: none!important;
+  position: relative!important;
+  z-index: 2;
+  box-sizing: border-box!important;
+  transition: none!important;
+  text-align: center!important;
+  line-height: normal!important;
+  margin: 7px auto auto 0px!important;
+  -webkit-font-smoothing: antialiased!important;
+}
+
+.pageMarker_button:hover {
+  background: rgba(0, 0, 0, 0.05)!important;
+}
+
+.pageMarker_icon {
+  padding: 0px!important;
+  width: 21px!important;
+  height: 20px!important;
+  background-color: transparent!important;
+}
+
+.pageMarker_tool {
+  display: inline-block;
+  box-sizing: border-box!important;
+  margin: 2px 3px 3px 3px;
+  padding: 6px;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #555!important;
+  border: none!important;
+  background: rgba(255,255,255,0.7)!important;
+  transition: all 0.2s ease!important;
+  backdrop-filter: blur(5px)!important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1)!important;
+}
+
+.pageMarker_toolDiv {
+  text-align: center;
+  display: block!important;
+}
+
+@media (hover: hover) {
+  .pageMarker_tool:hover {
+    background: rgba(102, 126, 234, 0.15)!important;
+    transform: translateY(-1px)!important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15)!important;
+  }
+}
+
+.pageMarker_tool:active {
+  background: rgba(102, 126, 234, 0.25)!important;
+  transform: translateY(0)!important;
+}
