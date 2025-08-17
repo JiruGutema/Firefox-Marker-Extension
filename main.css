@@ -2,7 +2,6 @@
 /* Styles for the drawing interface overlay */
 
 #webMarker_donateContainer {
-  margin-top: 18px;
   display: block!important;
   white-space: nowrap;
   width:100%;
@@ -15,9 +14,7 @@ a.webMarker_kofi-button {
   line-height: 21.6px!important;
   display: block!important;
   background-color: #ff0000;
-  padding: 2px 6.2px 2px 5.5px!important;
   text-align: center !important;
-  border-radius: 7px;
   color: #fff;
   cursor: pointer;
   overflow-wrap: break-word;
@@ -31,7 +28,7 @@ a.webMarker_kofi-button {
 }
 
 .webMarker_donationText {
-  margin: 0px;
+  margin: 2px;
   font-size:14px;
   text-align: center;
   font-weight: bold;

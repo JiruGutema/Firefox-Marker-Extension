@@ -158,23 +158,24 @@ function initializeMarker(preferences) {
       <div class="webMarker_title">Size</div>
       <input type="range" id="webMarker_thicknessSlider" value="5" max="60" min="1">
     </div>
+    
   `;
   
   // Position toolbar
   toolbar.style.top = scrollTop + "px";
   
   // Add whiteboard link (50% chance)
-  if (Math.floor(Math.random() * 2) === 0) {
     const donateContainer = document.createElement("div");
     donateContainer.id = "webMarker_donateContainer";
     donateContainer.innerHTML = `
       <a title="Whiteboard" id="webMarker_donate" class="webMarker_kofi-button" 
-         href="https://whitesketchboard.vercel.app" target="_blank">
-        WhiteBoard
+         href="https://whitesketchboard.vercel.app" target="_blank" style="padding:2px">
+         <div style="padding:2px">
+         WhiteBoard
+         </div>
       </a>
     `;
     toolbar.appendChild(donateContainer);
-  }
   
   // Make toolbar draggable
   toolbar.addEventListener("mousedown", function(event) {
