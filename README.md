@@ -1,4 +1,5 @@
 # Web Marker Extension
+<img width="1846" height="997" alt="image" src="https://github.com/user-attachments/assets/f63619cd-36fe-4665-b678-2d234cac7f0a" />
 
 A browser extension that allows users to draw, annotate, and mark up any webpage with various tools including markers, highlighters, text, lines, and erasers.
 
