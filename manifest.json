@@ -1,7 +1,7 @@
 {
   "name": "Page Marker",
   "description": "Draw on any webpage with markers, highlighters, and text tools",
-  "version": "2.0",
+  "version": "3.0",
   "permissions": [
     "activeTab",
     "storage",

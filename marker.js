@@ -16,7 +16,7 @@ if (document.getElementById("webMarker_canvas")) {
     },
     function (preferences) {
       initializeMarker(preferences);
-    }
+    },
   );
 }
 
@@ -45,7 +45,7 @@ function saveCanvasToStorage() {
       },
       function () {
         console.log("Canvas state saved for:", window.location.href);
-      }
+      },
     );
   }
 }
@@ -112,7 +112,7 @@ function initializeMarker(preferences) {
     body.offsetHeight,
     documentElement.clientHeight,
     documentElement.scrollHeight,
-    documentElement.offsetHeight
+    documentElement.offsetHeight,
   );
 
   let maxHeight = 7500;
@@ -127,7 +127,7 @@ function initializeMarker(preferences) {
   // Check if page is too tall
   if (canvasHeight > 25000) {
     alert(
-      "Web Marker does not support pages with this height. Please try again on a different website."
+      "Web Marker does not support pages with this height. Please try again on a different website.",
     );
     exitMarker();
     return;
@@ -160,41 +160,57 @@ function initializeMarker(preferences) {
     <div id="webMarker_tools">
       <div class="webMarker_title webMarker_toolsTitle">Tools</div>
       <div class="webMarker_toolDiv">
-        <a id="webMarker_pen" class="webMarker_tool">
-          <img id="webMarker_penImg" class="webMarker_icon" alt="Marker" title="Marker">
+        <a id="webMarker_pen" class="webMarker_tool" title="Marker">
+          <svg viewBox="0 0 24 24" class="webMarker_icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+          <span>Pen</span>
         </a>
-        <a id="webMarker_highlighter" class="webMarker_tool">
-          <img id="webMarker_highlighterImg" class="webMarker_icon" alt="Highlighter" title="Highlighter">
+        <a id="webMarker_highlighter" class="webMarker_tool" title="Highlighter">
+          <svg viewBox="0 0 24 24" class="webMarker_icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          <span>Highlight</span>
         </a>
-        <a id="webMarker_eraser" class="webMarker_tool">
-          <img id="webMarker_eraserImg" class="webMarker_icon" alt="Eraser" title="Eraser">
+        <a id="webMarker_eraser" class="webMarker_tool" title="Eraser">
+          <svg viewBox="0 0 24 24" class="webMarker_icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path><line x1="18" y1="9" x2="12" y2="15"></line><line x1="12" y1="9" x2="18" y2="15"></line></svg>
+          <span>Eraser</span>
         </a>
-        <a id="webMarker_pointer" class="webMarker_tool">
-          <img id="webMarker_pointerImg" class="webMarker_icon" alt="Pointer" title="Pointer">
+        <a id="webMarker_pointer" class="webMarker_tool" title="Pointer">
+          <svg viewBox="0 0 24 24" class="webMarker_icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path><path d="M13 13l6 6"></path></svg>
+          <span>Pointer</span>
         </a>
-        <a id="webMarker_text" class="webMarker_tool">
-          <img id="webMarker_textImg" class="webMarker_icon" alt="Text" title="Text">
+        <a id="webMarker_text" class="webMarker_tool" title="Text">
+          <svg viewBox="0 0 24 24" class="webMarker_icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+          <span>Text</span>
         </a>
-        <a id="webMarker_move" class="webMarker_tool">
-          <img id="webMarker_moveImg" class="webMarker_icon" alt="Move" title="Move">
+        <a id="webMarker_move" class="webMarker_tool" title="Move">
+          <svg viewBox="0 0 24 24" class="webMarker_icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="5 9 2 12 5 15"></polyline><polyline points="9 5 12 2 15 5"></polyline><polyline points="19 9 22 12 19 15"></polyline><polyline points="9 19 12 22 15 19"></polyline><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line></svg>
+          <span>Move</span>
         </a>
-        <a id="webMarker_line" class="webMarker_tool">
-          <img id="webMarker_lineImg" class="webMarker_icon" alt="Line" title="Line">
+        <a id="webMarker_line" class="webMarker_tool" title="Line">
+          <svg viewBox="0 0 24 24" class="webMarker_icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><line x1="5" y1="19" x2="19" y2="5"></line></svg>
+          <span>Line</span>
         </a>
-        <a id="webMarker_save" class="webMarker_tool">
-          <img id="webMarker_saveImg" class="webMarker_icon" alt="Save" title="Save Drawing">
+        <a id="webMarker_save" class="webMarker_tool" title="Save Drawing">
+          <svg viewBox="0 0 24 24" class="webMarker_icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          <span>Save</span>
         </a>
-        <a id="webMarker_undo" class="webMarker_tool">
-          <img id="webMarker_undoImg" class="webMarker_icon" alt="Undo" title="Undo">
+        <a id="webMarker_undo" class="webMarker_tool" title="Undo">
+          <svg viewBox="0 0 24 24" class="webMarker_icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="9 14 4 9 9 4"></polyline><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>
+          <span>Undo</span>
         </a>
-        <a id="webMarker_redo" class="webMarker_tool">
-          <img id="webMarker_redoImg" class="webMarker_icon" alt="Redo" title="Redo">
+        <a id="webMarker_redo" class="webMarker_tool" title="Redo">
+          <svg viewBox="0 0 24 24" class="webMarker_icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="15 14 20 9 15 4"></polyline><path d="M4 20v-7a4 4 0 0 1 4-4h12"></path></svg>
+          <span>Redo</span>
         </a>
-        <a id="webMarker_clear" class="webMarker_tool">
-          <img id="webMarker_clearImg" class="webMarker_icon" alt="Clear" title="Clear">
+        <a id="webMarker_clear" class="webMarker_tool" title="Clear">
+          <svg viewBox="0 0 24 24" class="webMarker_icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+          <span>Clear</span>
         </a>
-        <a id="webMarker_exit" class="webMarker_tool">
-          <img id="webMarker_exitImg" class="webMarker_icon" alt="Exit" title="Exit">
+        <a id="webMarker_dashboard" class="webMarker_tool" title="Dashboard">
+          <svg viewBox="0 0 24 24" class="webMarker_icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          <span>Dashboard</span>
+        </a>
+        <a id="webMarker_exit" class="webMarker_tool" title="Exit">
+          <svg viewBox="0 0 24 24" class="webMarker_icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>Exit</span>
         </a>
       </div>
     </div>
@@ -202,24 +218,10 @@ function initializeMarker(preferences) {
       <div class="webMarker_title">Size</div>
       <input type="range" id="webMarker_thicknessSlider" value="5" max="60" min="1">
     </div>
-    
   `;
 
   // Position toolbar
   toolbar.style.top = scrollTop + "px";
-
-  // Add whiteboard link
-  const donateContainer = document.createElement("div");
-  donateContainer.id = "webMarker_donateContainer";
-  donateContainer.innerHTML = `
-      <a title="Whiteboard" id="webMarker_donate" class="webMarker_kofi-button" 
-         href="${chrome.runtime.getURL('whiteboard.html')}" target="_blank" style="padding:2px">
-         <div style="padding:2px">
-         WhiteBoard
-         </div>
-      </a>
-    `;
-  toolbar.appendChild(donateContainer);
 
   // Make toolbar draggable
   toolbar.addEventListener("mousedown", function (event) {
@@ -272,12 +274,13 @@ function initializeMarker(preferences) {
     undoAction,
     redoAction,
     clearCanvas,
+    function () {
+      window.open(chrome.runtime.getURL("whiteboard.html"), "_blank");
+    },
     exitMarker,
   ];
 
   toolButtons.forEach(function (button, index) {
-    const img = button.querySelector("img");
-    img.src = chrome.runtime.getURL(img.alt.toLowerCase() + ".png");
     button.onclick = toolFunctions[index];
   });
 
@@ -287,7 +290,7 @@ function initializeMarker(preferences) {
   let eraseThickness = preferences.eraseThickness;
   let textSize = preferences.textSize;
 
-  penButton.style.background = "rgba(0,0,0,0.2)";
+  penButton.classList.add("active");
   thicknessSlider.value = penThickness;
   colorPicker.value = preferences.penColor;
 
@@ -300,7 +303,7 @@ function initializeMarker(preferences) {
   // Tool selection functions
   function clearToolSelection() {
     toolButtons.forEach((button) => {
-      button.style.background = "";
+      button.classList.remove("active");
     });
   }
 
@@ -322,7 +325,7 @@ function initializeMarker(preferences) {
         false;
 
     clearToolSelection();
-    button.style.background = "rgba(0,0,0,0.2)";
+    button.classList.add("active");
   }
 
   function selectPenTool() {
@@ -436,7 +439,7 @@ function initializeMarker(preferences) {
             window.open(url);
 
             toolbar.style.display = "block";
-          }
+          },
         );
       })
       .catch(function () {
@@ -480,7 +483,7 @@ function initializeMarker(preferences) {
     sourceStack,
     targetStack,
     enableButton,
-    disableButton
+    disableButton,
   ) {
     if (sourceStack.length !== 0) {
       targetStack.push(canvasState);
@@ -541,7 +544,7 @@ function initializeMarker(preferences) {
         fabricCanvas.freeDrawingBrush.width = newThickness;
       }
     },
-    false
+    false,
   );
 
   colorPicker.addEventListener(
@@ -552,13 +555,8 @@ function initializeMarker(preferences) {
         color = convertHexToRgba(color);
       }
       fabricCanvas.freeDrawingBrush.color = color;
-
-      const donateButton = document.getElementById("webMarker_donate");
-      if (donateButton) {
-        donateButton.style.backgroundColor = this.value;
-      }
     },
-    false
+    false,
   );
 
   // Canvas event listeners
@@ -615,7 +613,7 @@ function initializeMarker(preferences) {
           selectable: false,
           hoverCursor: "normal",
           targetFindTolerance: true,
-        }
+        },
       );
       fabricCanvas.add(currentLine);
     }
@@ -655,7 +653,7 @@ function initializeMarker(preferences) {
         body.offsetHeight,
         documentElement.clientHeight,
         documentElement.scrollHeight,
-        documentElement.offsetHeight
+        documentElement.offsetHeight,
       );
 
       const newHeight =
@@ -672,7 +670,7 @@ function initializeMarker(preferences) {
 
     if (fabricCanvas.getHeight() > 25000) {
       alert(
-        "Web Marker does not support pages with this height. Please try again on a different website."
+        "Web Marker does not support pages with this height. Please try again on a different website.",
       );
       exitMarker();
     }
