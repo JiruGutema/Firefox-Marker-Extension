@@ -1,171 +1,201 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Web Marker - Options</title>
-<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web Marker Settings</title>
+  <link rel="stylesheet" href="shared/ui.css">
+  <link rel="stylesheet" href="options.css">
 </head>
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-div.options {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: auto;
-  margin-right: auto;
-  width: 320px;
-  padding: 30px;
-  border-radius: 15px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-#main {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
-}
-h1, h2, h3 {
-  font-weight: 600;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-}
-h1 {
-  margin: 0 0 10px 0;
-  font-size: 28px;
-  color: #667eea;
-}
-h2 {
-  margin: 0 0 20px 0;
-  font-size: 16px;
-  color: #666;
-  font-weight: 400;
-}
-h3 {
-  margin: 25px 0 8px 0;
-  font-size: 14px;
-  color: #555;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-#val p {
-  margin-top: 0px;
-  vertical-align: middle;
-}
-#saved {
-  display: block;
-}
-#webMarker_colorSelect {
-  width: 80px;
-  height: 40px;
-  border-radius: 8px;
-  border: 2px solid #ddd;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin: 5px 0 15px 0;
-}
-#webMarker_colorSelect:hover {
-  border-color: #667eea;
-  transform: scale(1.05);
-}
-p {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 13px;
-  color: #666;
-  margin: 5px 0;
-}
-.webMarker_button {
-  width: 120px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 25px;
-  padding: 12px 24px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  margin: 20px auto 0 auto;
-  display: block;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-}
-.webMarker_button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-.webMarker_button:active {
-  transform: translateY(0);
-}
-.webMarker_slider {
-  width: 80%;
-  height: 6px;
-  border-radius: 3px;
-  background: #ddd;
-  outline: none;
-  margin: 10px 0;
-  cursor: pointer;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.webMarker_slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-.webMarker_slider::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-</style>
 <body>
-  <div id="main">
-    <div class="options">
-      <h1>Web Marker Options</h1>
-      <h2>Set Default Tool Settings</h2>
-      <h3>Default Color:</h3>
-      <input id="webMarker_colorSelect" name="color" type="color">
-      <h3>Pen Thickness:</h3>
-      <input class="webMarker_slider" type="range" id="webMarker_thicknessSlider1" max="50" min="1">
-      <div id="val"><p id="px1"></p></div>
-      <h3>Highlighter Thickness:</h3>
-      <input class="webMarker_slider" type="range" id="webMarker_thicknessSlider2" max="50" min="1">
-      <div id="val"><p id="px2"></p></div>
-      <h3>Eraser Thickness:</h3>
-      <input class="webMarker_slider" type="range" id="webMarker_thicknessSlider3" max="50" min="1">
-      <div id="val"><p id="px3"></p></div>
-      <h3>Text Size:</h3>
-      <input class="webMarker_slider" type="range" id="webMarker_thicknessSlider4" max="50" min="1">
-      <div id="val"><p id="px4"></p></div>
-      <div id="status"><p id="saved"></p></div>
-      <button class="webMarker_button" id="save">Save Settings</button>
+  <header class="page-header">
+    <div class="brand">
+      <img src="icon.png" alt="" width="32" height="32">
+      <h1>Web Marker</h1>
     </div>
-  </div>
-<script src="options.js"></script>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button class="tab" role="tab" id="tab-settings" aria-controls="panel-settings" data-tab="settings">Settings</button>
+      <button class="tab" role="tab" id="tab-saved" aria-controls="panel-saved" data-tab="saved">Saved drawings</button>
+      <button class="tab" role="tab" id="tab-shortcuts" aria-controls="panel-shortcuts" data-tab="shortcuts">Shortcuts</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Settings -->
+    <section class="panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings">
+      <div class="panel-head">
+        <p class="muted">Changes are saved automatically and apply the next time you open the marker.</p>
+        <span class="status" id="status" role="status" aria-live="polite"></span>
+      </div>
+
+      <div class="card">
+        <h2>Default tools</h2>
+        <div class="setting">
+          <label for="penColor">Default color</label>
+          <input type="color" id="penColor" data-setting="penColor">
+        </div>
+        <div class="setting">
+          <label for="penThickness">Pen, line and shape size</label>
+          <div class="control">
+            <input type="range" id="penThickness" data-setting="penThickness" min="1" max="60">
+            <output for="penThickness" data-output="penThickness"></output>
+            <canvas class="preview" data-preview="pen" width="120" height="40" aria-hidden="true"></canvas>
+          </div>
+        </div>
+        <div class="setting">
+          <label for="highlightThickness">Highlighter size</label>
+          <div class="control">
+            <input type="range" id="highlightThickness" data-setting="highlightThickness" min="1" max="60">
+            <output for="highlightThickness" data-output="highlightThickness"></output>
+            <canvas class="preview" data-preview="highlighter" width="120" height="40" aria-hidden="true"></canvas>
+          </div>
+        </div>
+        <div class="setting">
+          <label for="highlightOpacity">Highlighter opacity</label>
+          <div class="control">
+            <input type="range" id="highlightOpacity" data-setting="highlightOpacity" min="5" max="100" data-scale="100">
+            <output for="highlightOpacity" data-output="highlightOpacity"></output>
+            <span class="preview-spacer" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="setting">
+          <label for="eraseThickness">Eraser size</label>
+          <div class="control">
+            <input type="range" id="eraseThickness" data-setting="eraseThickness" min="1" max="60">
+            <output for="eraseThickness" data-output="eraseThickness"></output>
+            <canvas class="preview" data-preview="eraser" width="120" height="40" aria-hidden="true"></canvas>
+          </div>
+        </div>
+        <div class="setting">
+          <label for="textSize">Text size</label>
+          <div class="control">
+            <input type="range" id="textSize" data-setting="textSize" min="1" max="60">
+            <output for="textSize" data-output="textSize"></output>
+            <canvas class="preview" data-preview="text" width="120" height="40" aria-hidden="true"></canvas>
+          </div>
+        </div>
+        <div class="setting">
+          <label for="pressure">Pen pressure</label>
+          <div class="control">
+            <input type="checkbox" id="pressure" data-setting="pressure">
+            <span class="hint">Vary the pen width with stylus pressure.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Toolbar</h2>
+        <div class="setting">
+          <label for="theme">Theme</label>
+          <select id="theme" data-setting="theme">
+            <option value="auto">Match system</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+        <div class="setting">
+          <label for="layout">Layout</label>
+          <select id="layout" data-setting="layout">
+            <option value="vertical">Vertical</option>
+            <option value="horizontal">Horizontal</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Saving drawings</h2>
+        <div class="setting">
+          <label for="urlMatch">Remember drawings for</label>
+          <div class="control stacked">
+            <select id="urlMatch" data-setting="urlMatch">
+              <option value="page">The page, ignoring #anchors</option>
+              <option value="path">The page, ignoring ?query and #anchors</option>
+              <option value="exact">The exact address</option>
+            </select>
+            <span class="hint">"Ignoring ?query" keeps drawings when tracking parameters change, but pages that use the query to pick content (e.g. <code>?v=</code>) will share one drawing.</span>
+          </div>
+        </div>
+        <div class="setting">
+          <label for="autoOpen">Show drawings automatically</label>
+          <div class="control stacked">
+            <span class="inline">
+              <input type="checkbox" id="autoOpen" data-setting="autoOpen">
+              <span class="hint">Display saved drawings as soon as a page loads.</span>
+            </span>
+            <span class="hint">Needs permission to access all websites, which Firefox will ask for.</span>
+          </div>
+        </div>
+        <div class="setting">
+          <label for="retentionDays">Delete drawings after</label>
+          <div class="control">
+            <select id="retentionDays" data-setting="retentionDays">
+              <option value="0">Never</option>
+              <option value="7">7 days</option>
+              <option value="30">30 days</option>
+              <option value="90">90 days</option>
+              <option value="365">1 year</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions-row">
+        <button class="btn" id="reset" type="button">Reset to defaults</button>
+      </div>
+    </section>
+
+    <!-- Saved drawings -->
+    <section class="panel" id="panel-saved" role="tabpanel" aria-labelledby="tab-saved" hidden>
+      <div class="panel-head">
+        <p class="muted" id="savedSummary">Loading…</p>
+        <div class="toolbar-row">
+          <button class="btn" id="exportAll" type="button">Export all</button>
+          <label class="btn" for="importFile">Import…</label>
+          <input type="file" id="importFile" accept="application/json,.json" class="visually-hidden">
+          <button class="btn" id="cleanup" type="button" hidden>Clean up now</button>
+          <button class="btn btn-danger" id="deleteAll" type="button">Delete all</button>
+        </div>
+      </div>
+      <p class="status" id="savedStatus" role="status" aria-live="polite"></p>
+
+      <h2 class="list-title">Pages</h2>
+      <ul class="drawings" id="pageList"></ul>
+      <p class="empty" id="pageEmpty" hidden>No saved drawings yet. Anything you draw on a page is saved here automatically.</p>
+
+      <h2 class="list-title">Whiteboards</h2>
+      <ul class="drawings" id="boardList"></ul>
+      <p class="empty" id="boardEmpty" hidden>No whiteboards yet. <a href="whiteboard.html">Open the whiteboard</a> to create one.</p>
+    </section>
+
+    <!-- Shortcuts -->
+    <section class="panel" id="panel-shortcuts" role="tabpanel" aria-labelledby="tab-shortcuts" hidden>
+      <div class="card">
+        <h2>Open Web Marker</h2>
+        <p>Press <span id="toggleShortcut"><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd></span>, click the toolbar button, or right-click a page and choose <strong>Annotate this page</strong>.</p>
+        <p class="hint">To change this shortcut, open <code>about:addons</code>, click the gear menu, and choose <strong>Manage Extension Shortcuts</strong>.</p>
+      </div>
+      <div class="card">
+        <h2>While drawing</h2>
+        <table class="shortcut-table">
+          <tbody id="shortcutRows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="confirmDialog">
+    <form method="dialog">
+      <h2 id="confirmTitle">Are you sure?</h2>
+      <p id="confirmMessage"></p>
+      <div class="dialog-actions">
+        <button class="btn" value="cancel">Cancel</button>
+        <button class="btn btn-primary" value="ok" id="confirmOk">Delete</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="shared/constants.js"></script>
+  <script src="shared/storage.js"></script>
+  <script src="options.js"></script>
 </body>
 </html>

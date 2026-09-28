@@ -1,0 +1,76 @@
+/* Web Marker - Whiteboard page */
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  background: #ffffff;
+}
+
+.grid-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wb-header {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 2147483647;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  max-width: calc(100vw - 24px - 140px);
+  padding: 6px;
+  background: var(--wm-bg);
+  border: 1px solid var(--wm-border);
+  border-radius: 12px;
+  box-shadow: var(--wm-shadow);
+}
+
+.wb-header select {
+  max-width: 180px;
+}
+
+.wb-header .sep {
+  width: 1px;
+  height: 22px;
+  margin: 0 2px;
+  background: var(--wm-border);
+}
+
+.zoom {
+  display: flex;
+  gap: 2px;
+}
+
+.zoom-level {
+  min-width: 64px;
+  padding: 0 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.intro-list {
+  margin: 0 0 16px;
+  padding-left: 20px;
+  line-height: 1.9;
+}
+
+.intro-footer {
+  font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  .wb-header {
+    max-width: calc(100vw - 24px);
+    top: auto;
+    bottom: 12px;
+  }
+}

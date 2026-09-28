@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web Marker Screenshot</title>
+  <link rel="stylesheet" href="shared/ui.css">
+  <style>
+    header {
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--wm-bg);
+      border-bottom: 1px solid var(--wm-border);
+    }
+    h1 { margin: 0; font-size: 17px; }
+    .actions { display: flex; gap: 8px; }
+    main { padding: 24px 16px; text-align: center; }
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid var(--wm-border);
+      border-radius: 8px;
+      box-shadow: var(--wm-shadow);
+      background: #fff;
+    }
+    .status { min-height: 1.5em; margin: 0; color: var(--wm-success); font-weight: 600; }
+    .status.error { color: var(--wm-danger); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Web Marker screenshot</h1>
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+    <div class="actions">
+      <button class="btn" id="copy" type="button" disabled>Copy</button>
+      <button class="btn btn-primary" id="download" type="button" disabled>Download</button>
+    </div>
+  </header>
+  <main>
+    <img id="image" alt="Screenshot of the annotated page" hidden>
+    <p id="missing" hidden>This screenshot is no longer available. Screenshots are only kept until this tab is first opened.</p>
+  </main>
+  <script src="shared/storage.js"></script>
+  <script src="viewer.js"></script>
+</body>
+</html>

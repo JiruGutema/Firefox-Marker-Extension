@@ -1,492 +1,108 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Draw and Marker Whiteboard - Clean Drawing Canvas</title>
-    <meta
-      name="description"
-      content="A clean whiteboard for use with Web Draw and Marker extension. Perfect for drawing, sketching, and note-taking."
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Marker Whiteboard</title>
+  <meta name="description" content="An infinite whiteboard for sketching and note-taking with Web Marker.">
+  <link rel="stylesheet" href="shared/ui.css">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="whiteboard.css">
+</head>
+<body>
+  <div class="grid-background" id="grid" aria-hidden="true"></div>
 
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: #ffffff;
-        min-height: 100vh;
-        position: relative;
-        overflow-x: hidden;
-      }
-
-      /* Grid pattern background */
-      .grid-background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 1;
-        background-image: linear-gradient(
-            rgba(0, 0, 0, 0.08) 1px,
-            transparent 1px
-          ),
-          linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
-        background-size: 20px 20px;
-        pointer-events: none;
-        z-index: -1;
-      }
-
-      /* Header - Ultra Minimal */
-      .header {
-        position: fixed;
-        top: 8px;
-        right: 8px;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(6px);
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        border-radius: 6px;
-        padding: 4px;
-        z-index: 100;
-        display: flex;
-        gap: 4px;
-        align-items: center;
-        opacity: 0.7;
-        transition: opacity 0.2s ease;
-      }
-
-      .header:hover {
-        opacity: 1;
-      }
-
-      select,
-      button {
-        padding: 4px 8px;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 4px;
-        background: white;
-        font-size: 0.8rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-      }
-
-      select:hover,
-      button:hover {
-        border-color: #333;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      button {
-        background: #333;
-        color: white;
-        border: none;
-        font-weight: 500;
-        width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-      }
-
-      button:hover {
-        background: #555;
-      }
-
-      /* Main content area */
-      .whiteboard-area {
-        min-height: 100vh;
-        position: relative;
-        background: transparent;
-      }
-
-      /* Instructions overlay */
-      .instructions {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(15px);
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        max-width: 500px;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        z-index: 50;
-        transition: all 0.3s ease;
-      }
-
-      .instructions.hidden {
-        opacity: 0;
-        pointer-events: none;
-        transform: translate(-50%, -50%) scale(0.9);
-      }
-
-      .instructions h2 {
-        color: #333;
-        margin-bottom: 15px;
-        font-size: 1.5rem;
-      }
-
-      .instructions p {
-        color: #666;
-        line-height: 1.6;
-        margin-bottom: 10px;
-      }
-
-      .instructions .highlight {
-        color: #333;
-        font-weight: 600;
-      }
-
-      .close-instructions {
-        margin-top: 20px;
-        padding: 10px 20px;
-      }
-
-      /* Responsive */
-      @media (max-width: 768px) {
-        .header {
-          top: 4px;
-          right: 4px;
-          padding: 3px;
-          gap: 3px;
-        }
-
-        select,
-        button {
-          padding: 3px 6px;
-          font-size: 0.75rem;
-        }
-
-        button {
-          width: 20px;
-          height: 20px;
-        }
-
-        .instructions {
-          margin: 20px;
-          max-width: calc(100vw - 40px);
-          padding: 20px;
-        }
-      }
-
-      /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-    </style>
-    <link rel="stylesheet" href="main.css" />
-  </head>
-  <body>
-    <div class="grid-background"></div>
-
-    <header class="header">
-      <div
-        class="controls"
-        style="display: flex; flex-direction: row; gap: 10px"
-      >
-        <div class="control-group">
-          <select id="backgroundSelect">
-            <option value="white">White</option>
-            <option value="grid">White Grid</option>
-            <option value="dots">White Dots</option>
-            <option value="lines">White Lines</option>
-            <option value="dark">Dark</option>
-            <option value="dark-grid">Dark Grid</option>
-            <option value="dark-dots">Dark Dots</option>
-            <option value="dark-lines">Dark Lines</option>
-          </select>
-        </div>
-        <div class="control-group">
-          <select id="sizeSelect">
-            <option value="normal">Normal</option>
-            <option value="large">Large</option>
-            <option value="extra-large">Extra Large</option>
-          </select>
-        </div>
-        <button onclick="toggleInstructions()">?</button>
-      </div>
-    </header>
-
-    <main class="whiteboard-area" id="whiteboardArea">
-      <!-- This is where users will draw with the Firefox Marker extension -->
-    </main>
-
-    <div class="instructions hidden" id="instructions">
-      <h2>Welcome to Whiteboard Canvas!</h2>
-      <p>
-        This is a clean canvas designed to work with the
-        <span class="highlight">Draw and Mark a webpage</span> browser
-        extension.
-      </p>
-      <p><strong>To start drawing:</strong></p>
-      <p>
-        1. Click the Web Marker extension icon in your browser toolbar or
-        download it here
-        <a
-          href="https://addons.mozilla.org/en-US/firefox/addon/draw-and-mark-a-webpage/"
-          >Draw and Mark a webpage</a
-        >
-      </p>
-      <p>2. Use the floating toolbar to select your drawing tools</p>
-      <p>3. Draw, highlight, add text, and annotate freely!</p>
-      <p><strong>Keyboard Shortcuts:</strong></p>
-      <p>
-        Shift + D (Pen) • Shift + H (Highlighter) • Shift + E (Eraser) • Shift +
-        T (Text)
-      </p>
-      <button class="close-instructions" onclick="hideInstructions()">
-        OK
+  <header class="wb-header" aria-label="Whiteboard controls">
+    <label class="visually-hidden" for="boardSelect">Board</label>
+    <select id="boardSelect" title="Switch board"></select>
+    <button class="btn btn-icon" id="newBoard" type="button" title="New board" aria-label="New board">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+    <button class="btn btn-icon" id="renameBoard" type="button" title="Rename board" aria-label="Rename board">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+    </button>
+    <button class="btn btn-icon btn-danger" id="deleteBoard" type="button" title="Delete board" aria-label="Delete board">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+    </button>
+    <span class="sep" aria-hidden="true"></span>
+    <label class="visually-hidden" for="backgroundSelect">Background</label>
+    <select id="backgroundSelect" title="Background">
+      <option value="white">White</option>
+      <option value="grid">White grid</option>
+      <option value="dots">White dots</option>
+      <option value="lines">White lines</option>
+      <option value="dark">Dark</option>
+      <option value="dark-grid">Dark grid</option>
+      <option value="dark-dots">Dark dots</option>
+      <option value="dark-lines">Dark lines</option>
+    </select>
+    <span class="sep" aria-hidden="true"></span>
+    <div class="zoom" role="group" aria-label="Zoom">
+      <button class="btn btn-icon" id="zoomOut" type="button" title="Zoom out (Ctrl+scroll)" aria-label="Zoom out">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/></svg>
       </button>
-      <div>
-        Developer: <a href="https://jirugutema.vercel.app">Jiru Gutema</a>
-      </div>
+      <button class="btn zoom-level" id="zoomReset" type="button" title="Reset view" aria-label="Reset zoom and position">100%</button>
+      <button class="btn btn-icon" id="zoomIn" type="button" title="Zoom in (Ctrl+scroll)" aria-label="Zoom in">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
     </div>
+    <a class="btn btn-icon" href="options.html#saved" target="_blank" title="Saved drawings and settings" aria-label="Saved drawings and settings">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </a>
+    <button class="btn btn-icon" id="helpButton" type="button" title="About the whiteboard" aria-label="About the whiteboard">?</button>
+  </header>
 
-    <script>
-      // Background options
-      const backgrounds = {
-        white: {
-          body: "#ffffff",
-          grid: "none",
-        },
-        grid: {
-          body: "#ffffff",
-          grid: "linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px)",
-        },
-        dots: {
-          body: "#ffffff",
-          grid: "radial-gradient(circle, rgba(0,0,0,0.3) 1px, transparent 2px)",
-        },
-        lines: {
-          body: "#ffffff",
-          grid: "repeating-linear-gradient(0deg, transparent 0px, transparent 19px, rgba(0,0,0,0.2) 20px)",
-        },
-        dark: {
-          body: "#1a1a1a",
-          grid: "none",
-        },
-        "dark-grid": {
-          body: "#1a1a1a",
-          grid: "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
-        },
-        "dark-dots": {
-          body: "#1a1a1a",
-          grid: "radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 2px)",
-        },
-        "dark-lines": {
-          body: "#1a1a1a",
-          grid: "repeating-linear-gradient(0deg, transparent 0px, transparent 19px, rgba(255,255,255,0.2) 20px)",
-        },
-      };
+  <dialog id="introDialog" aria-labelledby="introTitle">
+    <h2 id="introTitle">Welcome to the whiteboard</h2>
+    <p>Your boards are saved automatically. Use the toolbar to draw, write, add shapes and sticky notes.</p>
+    <ul class="intro-list">
+      <li><kbd>Scroll</kbd> to move around, <kbd>Ctrl</kbd> + <kbd>scroll</kbd> to zoom.</li>
+      <li>Hold <kbd>Space</kbd> and drag (or drag with the middle mouse button) to pan.</li>
+      <li>Create more boards with <strong>+</strong> at the top left.</li>
+      <li>Press <kbd>?</kbd> for all keyboard shortcuts, and use the save button to export PNG, SVG or PDF.</li>
+    </ul>
+    <p class="intro-footer">Web Marker by <a href="https://jirugutema.vercel.app" target="_blank" rel="noopener">Jiru Gutema</a> · <a href="https://addons.mozilla.org/en-US/firefox/addon/draw-and-mark-a-webpage/" target="_blank" rel="noopener">Rate on Firefox Add-ons</a></p>
+    <form method="dialog" class="dialog-actions">
+      <button class="btn btn-primary" value="ok">Start drawing</button>
+    </form>
+  </dialog>
 
-      // Size options
-      const sizes = {
-        normal: "20px",
-        large: "30px",
-        "extra-large": "40px",
-      };
+  <dialog id="nameDialog" aria-labelledby="nameTitle">
+    <form method="dialog">
+      <h2 id="nameTitle">Name your board</h2>
+      <label class="visually-hidden" for="nameInput">Board name</label>
+      <input type="text" id="nameInput" maxlength="80" autocomplete="off">
+      <div class="dialog-actions">
+        <button class="btn" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn btn-primary" value="ok" id="nameOk">Save</button>
+      </div>
+    </form>
+  </dialog>
 
-      // DOM elements
-      let backgroundSelect,
-        sizeSelect,
-        gridBackground,
-        instructions,
-        whiteboardArea;
+  <dialog id="confirmDialog" aria-labelledby="confirmTitle">
+    <form method="dialog">
+      <h2 id="confirmTitle">Delete this board?</h2>
+      <p id="confirmMessage"></p>
+      <div class="dialog-actions">
+        <button class="btn" value="cancel">Cancel</button>
+        <button class="btn btn-primary" value="ok">Delete</button>
+      </div>
+    </form>
+  </dialog>
 
-      // Initialize DOM elements
-      function initializeElements() {
-        backgroundSelect = document.getElementById("backgroundSelect");
-        sizeSelect = document.getElementById("sizeSelect");
-        gridBackground = document.querySelector(".grid-background");
-        instructions = document.getElementById("instructions");
-        whiteboardArea = document.getElementById("whiteboardArea");
-      }
-
-      // Load saved preferences
-      function loadPreferences() {
-        const savedBackground =
-          localStorage.getItem("whiteboard-background") || "grid";
-        const savedSize = localStorage.getItem("whiteboard-size") || "normal";
-
-        backgroundSelect.value = savedBackground;
-        sizeSelect.value = savedSize;
-
-        applyBackground(savedBackground);
-        applySize(savedSize);
-      }
-
-      // Apply background
-      function applyBackground(type) {
-        const bg = backgrounds[type];
-        document.body.style.background = bg.body;
-
-        if (bg.grid === "none") {
-          gridBackground.style.display = "none";
-        } else {
-          gridBackground.style.display = "block";
-          gridBackground.style.backgroundImage = bg.grid;
-
-          // Adjust grid patterns based on type
-          if (type.includes("dots")) {
-            gridBackground.style.backgroundSize = "20px 20px";
-            gridBackground.style.backgroundPosition = "10px 10px";
-          } else if (type.includes("lines")) {
-            gridBackground.style.backgroundSize = "100% 20px";
-            gridBackground.style.backgroundPosition = "0 0";
-          } else {
-            gridBackground.style.backgroundSize = "20px 20px";
-            gridBackground.style.backgroundPosition = "0 0";
-          }
-        }
-
-        // Adjust header and UI for dark mode variants
-        const header = document.querySelector(".header");
-        const controlGroups = document.querySelectorAll(".control-group");
-        const controlLabels = document.querySelectorAll(".control-label");
-        const instructionsDiv = document.getElementById("instructions");
-
-        if (type.startsWith("dark")) {
-          // Dark mode styling
-          header.style.background = "rgba(30, 30, 30, 0.95)";
-          header.style.color = "white";
-          header.style.borderBottom = "1px solid rgba(255, 255, 255, 0.1)";
-
-          // Update control groups for dark mode
-          controlGroups.forEach((group) => {
-            group.style.background = "inherit";
-          });
-
-          // Update control labels for dark mode
-          controlLabels.forEach((label) => {
-            label.style.color = "#ccc";
-          });
-
-          // Update instructions for dark mode
-          instructionsDiv.style.background = "rgba(30, 30, 30, 0.95)";
-          instructionsDiv.style.color = "white";
-          instructionsDiv.style.border = "1px solid rgba(255, 255, 255, 0.1)";
-        } else {
-          // Light mode styling
-          header.style.background = "rgba(255, 255, 255, 0.95)";
-          header.style.color = "#333";
-          header.style.borderBottom = "1px solid rgba(0, 0, 0, 0.1)";
-
-          // Reset control groups for light mode
-          controlGroups.forEach((group) => {
-            group.style.background = "inherit";
-          });
-
-          // Reset control labels for light mode
-          controlLabels.forEach((label) => {
-            label.style.color = "#666";
-          });
-
-          // Reset instructions for light mode
-          instructionsDiv.style.background = "rgba(255, 255, 255, 0.95)";
-          instructionsDiv.style.color = "#333";
-          instructionsDiv.style.border = "1px solid rgba(0, 0, 0, 0.1)";
-        }
-
-        localStorage.setItem("whiteboard-background", type);
-      }
-
-      // Apply size
-      function applySize(size) {
-        const gridSize = sizes[size];
-        const currentBackground = backgroundSelect.value;
-
-        // Apply size based on pattern type
-        if (currentBackground.includes("dots")) {
-          gridBackground.style.backgroundSize = `${gridSize} ${gridSize}`;
-          gridBackground.style.backgroundPosition = `${
-            parseInt(gridSize) / 2
-          }px ${parseInt(gridSize) / 2}px`;
-        } else if (currentBackground.includes("lines")) {
-          gridBackground.style.backgroundSize = `100% ${gridSize}`;
-          gridBackground.style.backgroundPosition = "0 0";
-        } else if (currentBackground.includes("grid")) {
-          gridBackground.style.backgroundSize = `${gridSize} ${gridSize}`;
-          gridBackground.style.backgroundPosition = "0 0";
-        }
-
-        // Adjust whiteboard area height for larger sizes
-        const multiplier =
-          size === "extra-large" ? 3 : size === "large" ? 2 : 1;
-        whiteboardArea.style.minHeight = `${100 * multiplier}vh`;
-
-        localStorage.setItem("whiteboard-size", size);
-      }
-
-      // Toggle instructions based on current state
-      function toggleInstructions() {
-        if (instructions.classList.contains("hidden")) {
-          instructions.classList.remove("hidden");
-        } else {
-          instructions.classList.add("hidden");
-        }
-      }
-
-      // Show instructions
-      function showInstructions() {
-        instructions.classList.remove("hidden");
-      }
-
-      // Hide instructions
-      function hideInstructions() {
-        instructions.classList.add("hidden");
-      }
-      // Setup event listeners
-      function setupEventListeners() {
-        backgroundSelect.addEventListener("change", (e) => {
-          applyBackground(e.target.value);
-          applySize(sizeSelect.value); // Reapply size to maintain pattern
-        });
-
-        sizeSelect.addEventListener("change", (e) => {
-          applySize(e.target.value);
-          applyBackground(backgroundSelect.value); // Reapply background to maintain pattern
-        });
-      }
-
-      // Add some dynamic height to ensure scrolling works
-      function extendPage() {
-        const currentHeight = document.body.scrollHeight;
-        const viewportHeight = window.innerHeight;
-
-        if (currentHeight < viewportHeight * 3) {
-          whiteboardArea.style.minHeight = `${viewportHeight * 3}px`;
-        }
-      }
-
-      // Initialize the application
-      function init() {
-        initializeElements();
-        loadPreferences();
-        setupEventListeners();
-        extendPage();
-      }
-
-      // Event listeners for page load and resize
-      window.addEventListener("load", () => {
-        init();
-        extendPage();
-      });
-
-      window.addEventListener("resize", extendPage);
-    </script>
-    <script src="fabric.min.js"></script>
-    <script src="marker.js"></script>
-  </body>
+  <script src="fabric.min.js"></script>
+  <script src="shared/constants.js"></script>
+  <script src="shared/storage.js"></script>
+  <script src="shared/pdf.js"></script>
+  <script src="content/util.js"></script>
+  <script src="content/history.js"></script>
+  <script src="content/brushes.js"></script>
+  <script src="content/toolbar.js"></script>
+  <script src="content/tools.js"></script>
+  <script src="content/exporter.js"></script>
+  <script src="content/shortcuts.js"></script>
+  <script src="content/board.js"></script>
+  <script src="content/main.js"></script>
+  <script src="whiteboard.js"></script>
+</body>
 </html>

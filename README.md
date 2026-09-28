@@ -1,36 +1,58 @@
-# Web Marker Extension
+# Web Marker
 <img width="1846" height="997" alt="image" src="https://github.com/user-attachments/assets/f63619cd-36fe-4665-b678-2d234cac7f0a" />
 
-A browser extension that allows users to draw, annotate, and mark up any webpage with various tools including markers, highlighters, text, lines, and erasers.
-
-## Installation for Testing (No Build Required)
-
-This extension uses vanilla JavaScript, HTML, and CSS. No build tools (Node.js, Webpack, etc.) are required.
-
-1. Clone or download this repository.
-2. Open Firefox and navigate to `about:debugging#/runtime/this-firefox`.
-3. Click **"Load Temporary Add-on..."**.
-4. Select the `manifest.json` file in this directory.
+A Firefox extension for drawing on and annotating any webpage: pen, highlighter, shapes, arrows, text, sticky notes and a laser pointer, plus an infinite whiteboard.
 
 ## Features
 
-- **Drawing Tools**: Pen, Highlighter, Eraser, Line, Text.
-- **Controls**: Change color, thickness, and move/undo/redo actions.
-- **Dashboard**: A standalone Whiteboard/Dashboard canvas accessible directly from the toolbar.
-- **Save**: Take screenshots of your marked-up pages.
+- **Drawing tools**: pen (with stylus pressure), highlighter, eraser, line, arrow, rectangle, ellipse, text, sticky notes and a laser pointer. Hold **Shift** for straight lines, 45° angles, squares and circles.
+- **Toolbar**: floating, draggable, collapsible, vertical or horizontal, light or dark. It has color swatches, recent colors, opacity, and size with a live preview.
+- **Saving**: drawings are saved per page automatically and come back when you reopen the marker. You can optionally show them as soon as the page loads.
+- **Export**: visible or full-page screenshot (PNG/PDF), drawing-only PNG or SVG, copy to clipboard, or open in a new tab.
+- **Whiteboard**: multiple boards on an infinite canvas with pan and zoom, several backgrounds, and PNG/SVG/PDF export.
+- **Saved drawings manager**: browse, open and delete saved drawings, export and import backups, and delete old drawings automatically.
 
-## Third-Party Libraries
+## Using it
 
-- **Fabric.js** (`fabric.min.js` v5.3.0)
+- Click the toolbar button, press **Alt+Shift+M**, or right-click a page and choose **Annotate this page**.
+- Press **?** while the marker is open to see all keyboard shortcuts.
+- Settings, saved drawings and the shortcut list are on the options page (`about:addons` → Web Marker → Preferences).
+
+Web Marker can't run on protected pages (browser pages, the add-ons site, the PDF viewer). The toolbar button shows a **!** badge there.
+
+## Development
+
+The extension is plain JavaScript, HTML and CSS, with no build step.
+
+### Load it in Firefox
+
+1. Open `about:debugging#/runtime/this-firefox`.
+2. Click **Load Temporary Add-on…** and pick `manifest.json`.
+
+Or, with Node.js installed:
+
+```bash
+npm install
+npm start        # web-ext run: launches Firefox with the extension loaded
+npm run lint     # web-ext lint
+npm test         # unit tests (node --test)
+npm run build    # zip for addons.mozilla.org, in web-ext-artifacts/
+```
+
+### Layout
+
+| Path | What it is |
+|------|------------|
+| `background.js` | Event page. Injects the marker, and handles screenshots, the clipboard, menus, auto-open and cleanup. |
+| `content/` | The marker itself. `main.js` (lifecycle), `toolbar.js`, `tools.js`, `history.js`, `exporter.js`, `shortcuts.js`, `brushes.js` (pressure pen), `board.js` (whiteboard pan and zoom). |
+| `shared/` | Code used everywhere. `storage.js` (settings, drawings, boards), `constants.js` (tools and shortcuts), `pdf.js`, `css.js`, and `ui.css` for extension pages. |
+| `main.css` | Canvas and toolbar styles. On web pages it's injected as a hardened user-origin stylesheet, so page CSS can't restyle the toolbar. |
+| `options.*`, `whiteboard.*`, `viewer.*` | Extension pages. |
+| `tests/` | Unit tests for the pure modules. |
+
+## Third-party libraries
+
+- **Fabric.js** (`fabric.min.js`, v4.6.0, with the eraser brush)
   - Purpose: HTML5 canvas library for interactive drawing.
   - License: MIT
   - Source: [fabricjs.com](https://fabricjs.com/)
-
-## Build Script (Optional)
-
-If you need to package the extension into a clean directory:
-```bash
-chmod +x build.sh
-./build.sh
-```
-This simply copies the source files into a `build/` directory for easy zipping.
