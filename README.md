@@ -1,5 +1,5 @@
 # Web Marker
-<img width="1846" height="997" alt="image" src="https://github.com/user-attachments/assets/f63619cd-36fe-4665-b678-2d234cac7f0a" />
+<img width="1909" height="1077" alt="Screenshot From 2026-09-27 19-51-26" src="https://github.com/user-attachments/assets/499f5cee-3d21-44f2-8f13-170bfd4a4dfe" />
 
 A Firefox extension for drawing on and annotating any webpage: pen, highlighter, shapes, arrows, text, sticky notes and a laser pointer, plus an infinite whiteboard.
 
